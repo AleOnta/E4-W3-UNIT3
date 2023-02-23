@@ -5,7 +5,6 @@ import { IArticle } from "../interfaces/Article";
 
 const ArticleFocusComponent = () => {
   const [article, setArticle] = useState<IArticle>();
-  const [hasError, setHasError] = useState<null | {}>(null);
   const params = useParams();
   const endpoint = "https://api.spaceflightnewsapi.net/v3/articles";
 
@@ -16,10 +15,10 @@ const ArticleFocusComponent = () => {
         const data = await response.json();
         setArticle(data);
       } else {
-        setHasError({ hasError: "C'è stato un errore nello svolgimento della fetch" });
+        console.log("errore nell'esecuzione della fetch");
       }
     } catch (error: any) {
-      setHasError({ hasError: error.message });
+      console.log("errore fatale nell'esecuzione della fetch");
     }
   };
 

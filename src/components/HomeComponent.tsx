@@ -1,11 +1,10 @@
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import ArticleComponent from "./ArticleComponent";
 import { useState, useEffect } from "react";
 import { IArticle } from "../interfaces/Article";
 
 const HomeComponent = () => {
   const [articles, setArticles] = useState<IArticle[]>([]);
-  const [hasError, setHasError] = useState<null | {}>(null);
   const endpoint = "https://api.spaceflightnewsapi.net/v3/articles";
 
   const fetchingArticles = async () => {
@@ -15,10 +14,10 @@ const HomeComponent = () => {
         const data = await response.json();
         setArticles(data);
       } else {
-        setHasError({ hasError: "C'è stato un errore nello svolgimento della fetch" });
+        console.log("errore nell'esecuzione della fetch");
       }
     } catch (error: any) {
-      setHasError({ hasError: error.message });
+      console.log("errore fatale nell'esecuzione della fetch");
     }
   };
 
